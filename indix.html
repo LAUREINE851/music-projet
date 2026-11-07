@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Musique – Clone UI</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="logo">
+        <span class="logo-mark" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="#000" stroke-width="2.4" stroke-linecap="round">
+            <path d="M4 9v6M9 5v14M14 8v8M19 11v2"/>
+          </svg>
+        </span>
+        <span class="logo-text">Musique</span>
+      </div>
+
+      <nav class="nav">
+        <button class="nav-link active" data-view="home">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 3 3 10.5V21h6.5v-6h5v6H21V10.5z"/></svg>
+          <span>Accueil</span>
+        </button>
+        <button class="nav-link" data-view="search">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <span>Recherche</span>
+        </button>
+        <button class="nav-link" data-view="library">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M4 4v16M10 4v16M15 6l5 13"/></svg>
+          <span>Bibliothèque</span>
+        </button>
+      </nav>
+
+      <div class="playlists">
+        <h3>Mes playlists</h3>
+        <ul id="sidebar-playlists"></ul>
+      </div>
+    </aside>
+
+    <!-- MAIN -->
+    <main class="main">
+      <header class="topbar">
+        <div class="history">
+          <button class="circle-btn" id="btn-back" aria-label="Précédent">‹</button>
+          <button class="circle-btn" id="btn-forward" aria-label="Suivant">›</button>
+        </div>
+        <div class="profile">
+          <button class="upgrade">Explorer Premium</button>
+          <button class="avatar" aria-label="Profil">A</button>
+        </div>
+      </header>
+
+      <!-- Vue Accueil -->
+      <section class="view active" id="view-home">
+        <h1 id="greeting">Bonsoir</h1>
+        <div class="quick-grid" id="quick-grid"></div>
+
+        <div class="section-head"><h2>Mixes du moment</h2><a href="#">Tout afficher</a></div>
+        <div class="card-grid" id="grid-mixes"></div>
+
+        <div class="section-head"><h2>Écoutés récemment</h2><a href="#">Tout afficher</a></div>
+        <div class="card-grid" id="grid-recent"></div>
+      </section>
+
+      <!-- Vue Recherche -->
+      <section class="view" id="view-search">
+        <div class="search-box">
+          <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+          <input type="search" id="search-input" placeholder="Que souhaitez-vous écouter ?" autocomplete="off">
+        </div>
+
+        <div id="search-browse">
+          <h2>Parcourir tout</h2>
+          <div class="genre-grid" id="genre-grid"></div>
+        </div>
+
+        <div id="search-results" hidden>
+          <h2>Résultats</h2>
+          <div class="card-grid" id="grid-results"></div>
+          <p class="empty" id="no-result" hidden>Aucun résultat pour cette recherche.</p>
+        </div>
+      </section>
+
+      <!-- Vue Bibliothèque -->
+      <section class="view" id="view-library">
+        <h1>Bibliothèque</h1>
+        <div class="card-grid" id="grid-library"></div>
+      </section>
+    </main>
+
+    <!-- LECTEUR -->
+    <footer class="player">
+      <div class="now-playing">
+        <div class="cover" id="player-cover"></div>
+        <div class="meta">
+          <div class="track-title" id="player-title">—</div>
+          <div class="track-artist" id="player-artist">—</div>
+        </div>
+        <button class="icon-btn like" id="btn-like" aria-label="Ajouter aux favoris">♥</button>
+      </div>
+
+      <div class="controls">
+        <div class="buttons">
+          <button class="icon-btn" id="btn-shuffle" aria-label="Aléatoire">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h4l10 10h4M3 17h4l3-3M14 10l3-3h4M18 4l3 3-3 3M18 14l3 3-3 3"/></svg>
+          </button>
+          <button class="icon-btn" id="btn-prev" aria-label="Précédent">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M6 5h2v14H6zM20 5v14L9 12z"/></svg>
+          </button>
+          <button class="play-btn" id="btn-play" aria-label="Lecture"></button>
+          <button class="icon-btn" id="btn-next" aria-label="Suivant">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M16 5h2v14h-2zM4 5v14l11-7z"/></svg>
+          </button>
+          <button class="icon-btn" id="btn-repeat" aria-label="Répéter">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 2l4 4-4 4M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4M21 13v2a3 3 0 0 1-3 3H3"/></svg>
+          </button>
+        </div>
+        <div class="progress-row">
+          <span id="time-current">0:00</span>
+          <input type="range" id="progress" min="0" max="100" value="0" step="0.1" aria-label="Progression">
+          <span id="time-total">0:00</span>
+        </div>
+      </div>
+
+      <div class="volume">
+        <button class="icon-btn" id="btn-mute" aria-label="Volume"></button>
+        <input type="range" id="volume" min="0" max="100" value="70" aria-label="Volume">
+      </div>
+    </footer>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
