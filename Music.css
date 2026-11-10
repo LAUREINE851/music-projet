@@ -1,0 +1,67 @@
+*{
+    margin : 0;
+    padding : 0;
+    font-family :sans-serif;
+}
+.ArrierePlan{
+    height:100vh;
+    width:100%;
+    background-image:url(Bg.png);
+    background-size:cover;
+    position:relative;
+}
+.navbar{
+    width:100%;
+    margin:auto;
+    padding:15px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.logo{
+    width:100px;
+    cursor:pointer;
+}
+.navbar ul li{
+    list-style:none;
+    display: inline-block;
+    margin:0 20px;
+}
+.navbar ul li a{
+    text-decoration:none;
+    color:aliceblue;
+    font-size:20px;
+}
+.contenu{
+    width:100%;
+    position:absolute;
+    top:30%;
+}
+.col-gauche{
+    margin-left:10%;
+
+}
+.col-gauche h1{
+    font-size:90px;
+    color:aliceblue;
+    align-items:110px;
+    float:left;
+}
+.col-droite{
+    float:right;
+    margin:3%;
+    margin-top:150px;
+    display:flex;
+    align-items:center;
+}
+.col-droite p{
+    font-size:18px;
+    color:aliceblue;
+    font-weight:500;
+    margin:15px;
+}
+#btnplay{
+    width:50px;
+    cursor:pointor;
+
+}
